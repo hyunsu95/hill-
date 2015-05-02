@@ -1,0 +1,135 @@
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+void main()
+{
+	char aa[27] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char pt[10];
+	int yorn = 0;
+	int m, d, q = 0, i, j, k[3][3],k1[3][3], p[5], pp[5], t[27];
+	int dat[5];
+	printf("암호화를 하시고 싶으시면 0번\n복호화를 하시고 싶으시면 1번을 눌러주세요.\n");
+	scanf_s("%d", &yorn);
+	if (yorn > 1)
+	{
+		printf("존재하지 않는 선택지 입니다.\n");
+	}
+	else{
+		if (yorn == 0)
+		{
+			printf("암호화할 단어를 입력하세요 : ");
+			scanf_s("%s", pt, 10);
+			printf("암호키를 입력하세요 : \n");
+			for (i = 0; i < 2; i++)
+			{
+				for (j = 0; j < 2; j++)
+				{
+					scanf_s("%d", &k[i][j]);
+				}
+			}
+			m = strlen(pt);
+			for (i = 0; i < m; i++)
+			{
+				for (j = i; j < 27; j++)
+
+				{
+					if (pt[i] == aa[j])
+
+					{
+						dat[i] = pt[i] - 65;
+						t[q] = dat[i];
+						++q;
+					}
+				}
+			}
+			//printf("\n%d,%d,%d,%d", k[0][0], k[1][0], k[0][1], k[1][1]);
+			//printf("\n%d,%d,%d,%d", t[0],t[1],t[2],t[3]);
+			p[0] = (k[0][0] * t[0]) + (k[0][1] * t[1]);
+			p[1] = (k[1][0] * t[0]) + (k[1][1] * t[1]);
+			p[2] = (k[0][0] * t[2]) + (k[0][1] * t[3]);
+			p[3] = (k[1][0] * t[2]) + (k[1][1] * t[3]);
+
+			for (i = 0; i < m; i++)
+			{
+				//printf("p=%d,",p[i]);
+				if (p[i] > 26)
+				{
+					p[i] = p[i] - 26;
+					if (p[i] > 26)
+					{
+						p[i] = p[i] - 26;
+						if (p[i] > 26)
+						{
+							p[i] = p[i] - 26;
+						}
+					}
+				}
+				//printf("p[i]=%d,", p[i]);
+			}
+
+			for (i = 0; i < m; i++)
+			{
+				pp[i] = p[i] + 65;
+				printf("\n암호화 된 단어는 : %c 입니다.", pp[i]);
+			}
+		}
+		else
+		{
+			printf("복호화할 단어를 입력하세요 : ");
+			scanf_s("%s", pt, 10);
+			printf("암호키를 입력하세요 : \n");
+			for (i = 0; i < 2; i++)
+			{
+				for (j = 0; j < 2; j++)
+				{
+					scanf_s("%d", &k[i][j]);
+				}
+			}
+			m = strlen(pt);
+			for (i = 0; i < m; i++)
+			{
+				for (j = i; j < 27; j++)
+
+				{
+					if (pt[i] == aa[j])
+
+					{
+						dat[i] = pt[i] - 65;
+						t[q] = dat[i];
+						++q;
+					}
+				}
+			}
+			//printf("\n%d,%d,%d,%d", k[0][0], k[1][0], k[0][1], k[1][1]);
+			//printf("\n%d,%d,%d,%d", t[0],t[1],t[2],t[3]);
+			p[0] = (k[0][0] * t[0]) + (k[0][1] * t[1]);
+			p[1] = (k[1][0] * t[0]) + (k[1][1] * t[1]);
+			p[2] = (k[0][0] * t[2]) + (k[0][1] * t[3]);
+			p[3] = (k[1][0] * t[2]) + (k[1][1] * t[3]);
+
+			for (i = 0; i < m; i++)
+			{
+				//printf("p=%d,",p[i]);
+				if (p[i] > 26)
+				{
+					p[i] = p[i] - 26;
+					if (p[i] > 26)
+					{
+						p[i] = p[i] - 26;
+						if (p[i] > 26)
+						{
+							p[i] = p[i] - 26;
+						}
+					}
+				}
+				//printf("p[i]=%d,", p[i]);
+			}
+
+			for (i = 0; i < m; i++)
+			{
+				pp[i] = p[i] + 65;
+				printf("\n복호화 된 단어는 : %c 입니다.", pp[i]);
+			}
+		}
+	}
+}
